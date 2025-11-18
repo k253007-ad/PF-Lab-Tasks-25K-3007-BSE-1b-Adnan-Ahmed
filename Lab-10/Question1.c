@@ -5,7 +5,7 @@ int main() {
     
     int i,j,n,check = 4, correct = 0;
     int capital = 0, digit = 0, special = 0;
-    char str[20];
+    char str[100];
     
     while ( correct < check ){
         
