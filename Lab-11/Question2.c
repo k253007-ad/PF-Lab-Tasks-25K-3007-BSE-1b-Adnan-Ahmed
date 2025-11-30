@@ -140,9 +140,55 @@ int findAcc(struct account a[], int n, int acc){
     return -1;
 }
 
+void loadDefaults(struct account a[], int *n){
+    *n = 3;
+
+    strcpy(a[0].name, "Ali");
+    a[0].accNo = 1;
+    strcpy(a[0].type, "Savings");
+    a[0].balance = 5000;
+    strcpy(a[0].creationDate, "01-01-2022");
+    strcpy(a[0].lastTransactionDate, "01-01-2022");
+    a[0].transactionCount = 1;
+    strcpy(a[0].history[0].type, "Deposit");
+    a[0].history[0].amount = 5000;
+    strcpy(a[0].history[0].date, "01-01-2022");
+
+    strcpy(a[1].name, "Sara");
+    a[1].accNo = 2;
+    strcpy(a[1].type, "Current");
+    a[1].balance = 10000;
+    strcpy(a[1].creationDate, "15-03-2021");
+    strcpy(a[1].lastTransactionDate, "15-03-2021");
+    a[1].transactionCount = 1;
+    strcpy(a[1].history[0].type, "Deposit");
+    a[1].history[0].amount = 10000;
+    strcpy(a[1].history[0].date, "15-03-2021");
+
+    strcpy(a[2].name, "Hamza");
+    a[2].accNo = 3;
+    strcpy(a[2].type, "Fixed");
+    a[2].balance = 20000;
+    strcpy(a[2].creationDate, "10-10-2020");
+    strcpy(a[2].lastTransactionDate, "10-10-2020");
+    a[2].transactionCount = 1;
+    strcpy(a[2].history[0].type, "Deposit");
+    a[2].history[0].amount = 20000;
+    strcpy(a[2].history[0].date, "10-10-2020");
+
+    printf("\nLoaded 3 default accounts.\n");
+}
+
 int main(){
     struct account a[100];
     int n = 0, choice;
+
+    printf("\nEnter number of accounts (0 for default): ");
+    scanf("%d", &n);
+
+    if(n == 0) {
+        loadDefaults(a, &n);
+    }
 
     while(1){
         printf("\n========== BANK MENU ==========");
@@ -164,7 +210,7 @@ int main(){
             int acc;
             printf("Enter Account No: ");
             scanf("%d", &acc);
-            acc -=1
+
             int index = findAcc(a, n, acc);
             if(index == -1) printf("\nAccount Not Found!\n");
             else deposit(&a[index]);
@@ -173,7 +219,7 @@ int main(){
             int acc;
             printf("Enter Account No: ");
             scanf("%d", &acc);
-            acc -= 1;
+
             int index = findAcc(a, n, acc);
             if(index == -1) printf("\nAccount Not Found!\n");
             else withdraw(&a[index]);
@@ -182,7 +228,7 @@ int main(){
             int acc;
             printf("Enter Account No: ");
             scanf("%d", &acc);
-            acc -= 1;
+
             int index = findAcc(a, n, acc);
             if(index == -1) printf("\nAccount Not Found!\n");
             else showAccount(a[index]);
@@ -191,7 +237,7 @@ int main(){
             int acc;
             printf("Enter Account No: ");
             scanf("%d", &acc);
-            acc -= 1;
+
             int index = findAcc(a, n, acc);
             if(index == -1) printf("\nAccount Not Found!\n");
             else showTransactions(a[index]);
